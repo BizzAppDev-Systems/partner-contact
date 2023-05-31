@@ -1,0 +1,1 @@
+odoo-addon-partner_category_security@ git+https://github.com/oca/partner-contact@refs/pull/1480/head#subdirectory=setup/partner_category_security
