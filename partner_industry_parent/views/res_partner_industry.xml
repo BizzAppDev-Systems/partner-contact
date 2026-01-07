@@ -14,7 +14,7 @@
                 <field name="parent_id" />
                 <field name="complete_name" />
             </xpath>
-            <xpath expr="//form" position="inside">
+            <xpath expr="//sheet" position="inside">
                 <group>
                     <field name="child_ids" />
                 </group>
