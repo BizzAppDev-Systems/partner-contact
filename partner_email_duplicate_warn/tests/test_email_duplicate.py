@@ -135,3 +135,32 @@ class TestResPartner(BaseCommon):
         )
         self.assertFalse(parent_partner.same_email_partner_ids)
         self.assertFalse(child_partner.same_email_partner_ids)
+
+    def test_action_open_business_doc(self):
+        """Test that action_open_business_doc returns the correct window action"""
+        action = self.partner_simple.action_open_business_doc()
+        self.assertIsInstance(
+            action, dict, "action_open_business_doc should return a dictionary"
+        )
+        self.assertEqual(
+            action.get("res_model"),
+            "res.partner",
+            "The action res_model should be 'res.partner'",
+        )
+        self.assertEqual(
+            action.get("res_id"),
+            self.partner_simple.id,
+            "The action res_id should match the partner ID",
+        )
+        self.assertEqual(
+            action.get("view_mode"), "form", "The action view_mode should be 'form'"
+        )
+        self.assertEqual(
+            action.get("target"), "current", "The action target should be 'current'"
+        )
+        self.assertIn("name", action, "The action should contain a 'name' key")
+        self.assertEqual(
+            action.get("type"),
+            "ir.actions.act_window",
+            "The action type should be 'ir.actions.act_window'",
+        )
