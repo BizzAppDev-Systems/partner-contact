@@ -1,0 +1,1 @@
+odoo-addon-partner_manual_rank @ git+https://github.com/OCA/partner-contact.git@refs/pull/2235/head#subdirectory=partner_manual_rank
