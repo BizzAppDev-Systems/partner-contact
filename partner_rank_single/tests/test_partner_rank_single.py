@@ -79,6 +79,8 @@ class TestPartnerRankSingle(common.TransactionCase):
             date=fields.Date.today(),
             partner_id=self.customer,
         )
+        with self.enter_registry_test_mode():
+            self.env.cr.postcommit.run()
         self.assertEqual(self.customer.customer_rank, 2, "Rank increased")
         self.assertFalse(self.customer.supplier_rank, "Not ranked")
 
@@ -108,6 +110,8 @@ class TestPartnerRankSingle(common.TransactionCase):
             date=fields.Date.today(),
             partner_id=self.supplier,
         )
+        with self.enter_registry_test_mode():
+            self.env.cr.postcommit.run()
         self.assertEqual(self.supplier.supplier_rank, 2, "Rank increased")
         self.assertFalse(self.supplier.customer_rank, "Not ranked")
 

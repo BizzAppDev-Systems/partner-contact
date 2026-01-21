@@ -16,7 +16,7 @@ class Contact(models.Model):
                     self.env._("A contact cannot be both a customer and a supplier.")
                 )
 
-    def _increase_rank(self, field, n=1):
+    def _increase_rank(self, field: str, n: int = 1):
         # OVERRIDE: to ignore increasing the rank if the partner is already ranked
         # in the opposite field
         field_inverses = {
