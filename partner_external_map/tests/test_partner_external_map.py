@@ -9,27 +9,31 @@ from ..hooks import set_default_map_settings
 
 
 class TestPartnerExternalMap(BaseCommon):
-    def setUp(self):
-        super().setUp()
-        self.user = self.env["res.users"].create(
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.user = cls.env["res.users"].create(
             {
                 "name": "Test user",
                 "login": "test_login",
-                "context_map_website_id": self.ref("partner_external_map.google_maps"),
-                "context_route_map_website_id": self.ref(
+                "context_map_website_id": cls.env.ref(
                     "partner_external_map.google_maps"
-                ),
+                ).id,
+                "context_route_map_website_id": cls.env.ref(
+                    "partner_external_map.google_maps"
+                ).id,
             }
         )
-        self.user.partner_id.city = "Tomelloso"
-        self.partner = self.env["res.partner"].create(
+        cls.user.partner_id.city = "Tomelloso"
+        cls.user.group_ids |= cls.env.ref("base.group_partner_manager")
+        cls.partner = cls.env["res.partner"].create(
             {
                 "name": "Test partner",
                 "city": "Madrid",
                 "street": "street_test",
                 "street2": "street2_test",
-                "state_id": self.ref("base.state_es_m"),
-                "country_id": self.ref("base.es"),
+                "state_id": cls.env.ref("base.state_es_m").id,
+                "country_id": cls.env.ref("base.es").id,
             }
         )
 

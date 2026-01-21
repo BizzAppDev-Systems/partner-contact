@@ -9,13 +9,13 @@
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form" />
         <field name="arch" type="xml">
-            <group name="messaging" position="after">
+            <page name="preferences" position="inside">
                 <group name="maps" string="Maps">
                     <field name="context_map_website_id" widget="selection" />
                     <field name="context_route_map_website_id" widget="selection" />
                     <field name="context_route_start_partner_id" />
                 </group>
-            </group>
+            </page>
         </field>
     </record>
     <record id="view_users_form_simple_modif" model="ir.ui.view">
@@ -23,7 +23,7 @@
         <field name="model">res.users</field>
         <field name="inherit_id" ref="base.view_users_form_simple_modif" />
         <field name="arch" type="xml">
-            <group name="preferences" position="inside">
+            <page name="preferences_page" position="inside">
                 <group name="maps">
                     <field
                         name="context_map_website_id"
@@ -37,7 +37,7 @@
                     />
                     <field name="context_route_start_partner_id" readonly="0" />
                 </group>
-            </group>
+            </page>
         </field>
     </record>
 </odoo>
